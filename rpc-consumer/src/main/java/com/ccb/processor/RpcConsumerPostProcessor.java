@@ -56,6 +56,7 @@ public class RpcConsumerPostProcessor implements ApplicationContextAware, BeanCl
                 ReflectionUtils.doWithFields(clazz, this::parseRpcReference);
             }
         }
+
         BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
         this.rpcRefBeanDefinitions.forEach((beanName, beanDefinition) -> {
             if (context.containsBean(beanName)) {
