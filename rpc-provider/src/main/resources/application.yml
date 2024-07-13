@@ -1,0 +1,4 @@
+rpc:
+  service-port: 8086
+  registry-address: localhost:2181
+  registry-type: ZOOKEEPER
