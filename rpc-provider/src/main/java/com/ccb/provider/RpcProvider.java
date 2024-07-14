@@ -2,7 +2,7 @@ package com.ccb.provider;
 
 
 import com.ccb.annotation.RpcService;
-import com.ccb.model.RpcServiceHelper;
+import com.ccb.utils.RpcServiceHelper;
 import com.ccb.model.ServiceMeta;
 import com.ccb.service.RegistryService;
 import io.netty.bootstrap.ServerBootstrap;

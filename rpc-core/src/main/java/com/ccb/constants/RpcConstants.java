@@ -1,4 +1,4 @@
-package com.ccb.model;
+package com.ccb.constants;
 
 public class RpcConstants {
     public static final String INIT_METHOD_NAME = "init";

@@ -1,7 +1,7 @@
 package com.ccb.processor;
 
 import com.ccb.annotation.RpcReference;
-import com.ccb.model.RpcConstants;
+import com.ccb.constants.RpcConstants;
 import com.ccb.processor.bean.RpcReferenceBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;

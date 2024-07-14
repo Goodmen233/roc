@@ -1,6 +1,6 @@
 package com.ccb.service.impl;
 
-import com.ccb.model.RpcServiceHelper;
+import com.ccb.utils.RpcServiceHelper;
 import com.ccb.model.ServiceMeta;
 import com.ccb.service.RegistryService;
 import org.apache.curator.framework.CuratorFramework;
@@ -13,7 +13,6 @@ import org.apache.curator.x.discovery.details.JsonInstanceSerializer;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 public class ZookeeperRegistryService implements RegistryService {
     public static final int BASE_SLEEP_TIME_MS = 1000;

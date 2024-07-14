@@ -1,4 +1,4 @@
-package com.ccb.model;
+package com.ccb.utils;
 
 public class RpcServiceHelper {
     /**
