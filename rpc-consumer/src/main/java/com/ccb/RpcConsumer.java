@@ -18,6 +18,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Objects;
+
 @Slf4j
 public class RpcConsumer {
     private final Bootstrap bootstrap;
@@ -43,7 +45,7 @@ public class RpcConsumer {
         Object[] params = request.getParams();
         String serviceKey = RpcServiceHelper.buildServiceKey(request.getClassName(), request.getServiceVersion());
 
-        int invokerHashCode = params.length > 0 ? params[0].hashCode() : serviceKey.hashCode();
+        int invokerHashCode = Objects.isNull(params) || params.length == 0 ? serviceKey.hashCode() : params[0].hashCode();
         ServiceMeta serviceMetadata = registryService.discovery(serviceKey, invokerHashCode);
 
         if (serviceMetadata != null) {

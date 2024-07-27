@@ -14,6 +14,7 @@
         <module>rpc-core</module>
         <module>rpc-consumer</module>
         <module>rpc-protocol</module>
+        <module>rpc-api</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -49,7 +50,7 @@
             </dependency>
             <dependency>
                 <groupId>com.ccb</groupId>
-                <artifactId>rpc-facade</artifactId>
+                <artifactId>rpc-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
