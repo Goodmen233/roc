@@ -25,6 +25,10 @@
             <groupId>com.ccb</groupId>
             <artifactId>rpc-registry</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.ccb</groupId>
+            <artifactId>rpc-protocol</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

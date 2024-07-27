@@ -1,6 +1,12 @@
 package com.ccb.processor.bean;
 
+import com.ccb.enums.RegistryType;
+import com.ccb.factory.RegistryFactory;
+import com.ccb.proxy.RpcInvokerProxy;
+import com.ccb.service.RegistryService;
 import org.springframework.beans.factory.FactoryBean;
+
+import java.lang.reflect.Proxy;
 
 /**
  * BeanDefine对象
@@ -30,12 +36,11 @@ public class RpcReferenceBean implements FactoryBean<Object> {
     }
 
     public void init() throws Exception {
-        // TODO 代理
-//        RegistryService registryService = RegistryFactory.getInstance(this.registryAddr, RegistryType.valueOf(this.registryType));
-//        this.object = Proxy.newProxyInstance(
-//                interfaceClass.getClassLoader(),
-//                new Class<?>[]{interfaceClass},
-//                new RpcInvokerProxy(serviceVersion, timeout, registryService));
+        RegistryService registryService = RegistryFactory.getInstance(this.registryAddr, RegistryType.valueOf(this.registryType));
+        this.object = Proxy.newProxyInstance(
+                interfaceClass.getClassLoader(),
+                new Class<?>[]{interfaceClass},
+                new RpcInvokerProxy(serviceVersion, timeout, registryService));
     }
 
     public void setInterfaceClass(Class<?> interfaceClass) {

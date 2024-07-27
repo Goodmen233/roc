@@ -21,6 +21,10 @@
             <groupId>com.ccb</groupId>
             <artifactId>rpc-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -1,5 +1,6 @@
 package com.ccb.service.impl;
 
+import com.ccb.loadbalancer.impl.ZKConsistentHashLoadBalancer;
 import com.ccb.utils.RpcServiceHelper;
 import com.ccb.model.ServiceMeta;
 import com.ccb.service.RegistryService;
@@ -13,6 +14,7 @@ import org.apache.curator.x.discovery.details.JsonInstanceSerializer;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 public class ZookeeperRegistryService implements RegistryService {
     public static final int BASE_SLEEP_TIME_MS = 1000;
@@ -60,11 +62,10 @@ public class ZookeeperRegistryService implements RegistryService {
     @Override
     public ServiceMeta discovery(String serviceName, int invokerHashCode) throws Exception {
         Collection<ServiceInstance<ServiceMeta>> serviceInstances = serviceDiscovery.queryForInstances(serviceName);
-        // TODO 负载均衡
-        // ServiceInstance<ServiceMeta> instance = new ZKConsistentHashLoadBalancer().select((List<ServiceInstance<ServiceMeta>>) serviceInstances, invokerHashCode);
-//        if (instance != null) {
-//            return instance.getPayload();
-//        }
+        ServiceInstance<ServiceMeta> instance = new ZKConsistentHashLoadBalancer().select((List<ServiceInstance<ServiceMeta>>) serviceInstances, invokerHashCode);
+        if (instance != null) {
+            return instance.getPayload();
+        }
         return serviceInstances.stream().findFirst().orElse(null).getPayload();
     }
 
