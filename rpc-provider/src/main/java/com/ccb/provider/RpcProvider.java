@@ -2,6 +2,9 @@ package com.ccb.provider;
 
 
 import com.ccb.annotation.RpcService;
+import com.ccb.codec.RpcDecoder;
+import com.ccb.codec.RpcEncoder;
+import com.ccb.handler.RpcRequestHandler;
 import com.ccb.utils.RpcServiceHelper;
 import com.ccb.model.ServiceMeta;
 import com.ccb.service.RegistryService;
@@ -46,7 +49,10 @@ public class RpcProvider implements InitializingBean, BeanPostProcessor {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-
+                            socketChannel.pipeline()
+                                    .addLast(new RpcEncoder())
+                                    .addLast(new RpcDecoder())
+                                    .addLast(new RpcRequestHandler(rpcServiceMap));
                         }
                     })
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
